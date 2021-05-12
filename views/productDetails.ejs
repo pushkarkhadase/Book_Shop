@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* add your style here */
+
+      .mainContainer {
+        display: flex;
+        flex-direction: row;
+      }
+      .container_left {
+        height: 100vh;
+        width: 30%;
+        padding-left: 5px;
+        padding-top: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container_right {
+        width: 70%;
+        padding: 5px;
+      }
+
+      .review_button {
+        /* width: 200px; */
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 50px auto;
+        /* padding-top: 30%; */
+      }
+
+      img {
+        width: 100%;
+        height: 300px;
+      }
+
+      /* for small devices of screen size less than or equal to 500px */
+      @media (max-width: 500px) {
+        .mainContainer {
+          flex-direction: column;
+        }
+        .container_left {
+          padding: 0px;
+          height: 40vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .review_button {
+          justify-content: center;
+          text-align: center;
+          margin-top: 10px;
+        }
+
+        .container_right {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .book_headings,
+        .book_description {
+          margin-left: 3px;
+          margin-right: 3px;
+        }
+
+        .function_buttons {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+
+        img {
+          width: 100%;
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+      <!-- brand Name -->
+      <a class="navbar-brand" href="#">Khadase's library</a>
+
+      <!-- Toggler Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#toggling_part"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="toggling_part">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addProducts">Add new product</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <!-- container to display the book-image and review button -->
+      <div class="mainContainer">
+        <!-- left side container to hold the lef side of pen -->
+        <div class="container_left">
+          <img
+            src="<%= productDetails.bookImage %>"
+            alt="Sorry Image not present"
+          />
+
+          <!-- adding the review button  -->
+          <a href="showReviews/<%= productDetails._id %>" class="btn btn-outline-primary review_button">
+            Show Reviews</a
+          >
+        </div>
+        <!-- Container for the right side of the screen containts -->
+        <div class="container_right">
+          <div class="book_headings">
+            <h2><%=productDetails.bookName %></h2>
+            <hr />
+            <h4>Authors:- <%= productDetails.bookAuthors %></h4>
+            <h5>
+              <span style="color: brown"
+                >Cost:-<%=productDetails.bookCost %> Rs.</span
+              >
+            </h5>
+          </div>
+          <hr />
+          <br />
+          <div class="alert alert-success alert-dismissible fade show">
+            <strong>The Following entry is to help your customers</strong>
+            <p>
+             NOTE:- YOU CAN GET THE AUTHOR'S REVIEW OR STRATEGY TO READ THIS BOOK ("IF IT IS PROVIDED!") IN THE REVIEW TAB <br>
+             Click on Show Review button to access the review page!
+            </p>
+            <button type="button" class="close" data-dismiss="alert">
+              &times;
+            </button>
+          </div>
+          <!-- Book Description -->
+          <div class="book_description">
+            <h3>Book Description</h3>
+            <h5 class="bookDiscriptionParagraph" style="text-align: justify">
+              <strong>Description:-</strong> <%=
+              productDetails.bookDescription %>
+            </h5>
+            <br />
+            <h5>
+              <strong>Genre:-</strong> <%=genreList %>
+              <!-- Change in logic ,,,, need to filter all data and the pass it from the parameter from the main file for genre -->
+            </h5>
+            <h5><strong>No. of pages:-</strong><%= productDetails.bookTotalPages %></h5>
+            <h5><strong>Publication:-</strong> <%= productDetails.bookPublication %></h5>
+            <h5><strong>Publication Year:-</strong> <%= productDetails.bookPublicationYear %></h5>
+          </div>
+          <hr />
+          <br />
+          <h4>
+            <span style="color: brown; margin-left: 3px">Cost:- <%= productDetails.bookCost %> Rs</span>
+          </h4>
+
+          <!-- Functional buttons -->
+          <div class="function_buttons">
+            <a href="#" class="btn btn-success">Purchase Now!</a>
+            <a href="#" class="btn btn-danger">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <br />
+    <footer>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Contact US?</h1>
+          <p class="lead">
+            Email Address: <br />pushkarkhadase@gmail.com<br /><br />
+            Phone Number: 7620698363
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

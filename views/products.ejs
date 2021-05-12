@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .cardContainer {
+        margin-bottom: 10px;
+        border: 2px solid red;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .cardContainer:hover {
+        animation: spin 0.5s 1 linear;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12),
+          0 4px 8px rgba(0, 0, 0, 0.06);
+      }
+      @keyframes spin {
+        from {
+          transform: rotateY(0deg);
+        }
+        to {
+          transform: rotateY(360deg);
+        }
+      }
+
+      .image {
+        height: 300px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+      <!-- brand Name -->
+      <a class="navbar-brand" href="/">Khadase's library</a>
+
+      <!-- Toggler Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#toggling_part"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="toggling_part">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addProducts">Add new product</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <br />
+
+    <div class="alert alert-success alert-dismissible fade show">
+      <strong>We do update our sites daily.</strong><br />
+      <p>
+        Thankyou for visiting our library hope you liked it, here you can find
+        all the Book which are for sale
+      </p>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+    <h2 class="Tranding_books">All Books</h2>
+
+    <!-- Tanding books Card row1 -->
+
+    <div class="container ">
+      <!-- Dynamic Card displaying Logic -->
+      <% if (product_list.length > 0) { for(let product of product_list) { %>
+      <div class="card cardContainer invisibleCard" style="width: 400px">
+        <img
+          class="card-img-top image"
+          src="<%= product.bookImage %>"
+          alt="Card image"
+        />
+        <div class="card-body">
+          <h4 class="card-title book"><%= product.bookName %></h4>
+          <p class="card-text">
+            <span style="color: #1b89dd"><%= product.bookCost %></span><br /> <hr>
+           <%= product.bookAuthors %>
+           
+           
+          </p>
+          <a href="./productDetails/<%= product._id %>" class="btn btn-success">Details</a>
+          <a href="./editProduct/<%= product._id %>" class="btn btn-warning">Edit</a>
+          <a href="./deleteProduct/<%= product._id %>" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+
+      <% } } else { %>
+      <h1>Sorry No Book Available yet!</h1>
+
+      <% } %>
+    </div>
+    <footer>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Contact US?</h1>
+          <p class="lead">
+            Email Address: pushkarkhadase@gmail.com<br /><br />
+            Phone Number: 7620698363
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

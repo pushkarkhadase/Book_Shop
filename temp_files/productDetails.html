@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* add your style here */
+
+      .mainContainer{
+        display: flex;
+        flex-direction: row;
+      }
+      .container_left {
+        height: 100vh;
+        width: 30%;
+        padding-left: 5px;
+        padding-top: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container_right {
+        width: 70%;
+        padding: 5px;
+      }
+
+      .review_button {
+        /* width: 200px; */
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 50px auto;
+        /* padding-top: 30%; */
+      }
+
+      img {
+        width: 100%;
+        height: 300px;
+      }
+
+      /* for small devices of screen size less than or equal to 500px */
+      @media (max-width: 500px) {
+        .mainContainer{
+          flex-direction: column;
+        }
+        .container_left {
+          padding: 0px;
+          height: 40vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .review_button {
+          justify-content: center;
+          text-align: center;
+          margin-top: 10px;
+        }
+
+        .container_right {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .book_headings,
+        .book_description {
+          margin-left: 3px;
+          margin-right: 3px;
+        }
+
+        .function_buttons {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+      <!-- brand Name -->
+      <a class="navbar-brand" href="#">Khadase's library</a>
+
+      <!-- Toggler Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#toggling_part"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="toggling_part">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addProducts">Add new product</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <!-- container to display the book-image and review button -->
+      <div class="mainContainer">
+        <div class="container_left">
+          <img
+            src="https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-e1464023124869.jpeg"
+            alt="Sorry Image not present"
+          />
+
+          <!-- adding the review button  -->
+          <a href="#" class="btn btn-outline-primary review_button">
+            Show Reviews</a
+          >
+        </div>
+        <!-- Container for the right side of the screen containts -->
+        <div class="container_right">
+          <div class="book_headings">
+            <h2>
+              Introduction to Datastructure and algorithms fundamentals excetra
+              and thats
+            </h2>
+            <hr />
+            <h4>Authors:- Henry H Cormen, elizabeth sobech</h4>
+            <h5><span style="color: brown">Cost:-2846 Rs.</span></h5>
+          </div>
+          <hr />
+          <br />
+          <!-- Book Description -->
+          <div class="book_description">
+            <h3>Book Description</h3>
+            <h5 class="bookDiscriptionParagraph" style="text-align: justify">
+              <strong>Description:-</strong> Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Nisi unde accusantium exercitationem
+              eveniet maxime velit dolor quasi incidunt aperiam asperiores,
+              veniam error earum omnis sunt alias, blanditiis ea? Ea, dolorum!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione,
+              hic optio possimus ducimus dicta, rerum repellendus accusamus
+              animi distinctio qui molestiae ea debitis deleniti, vel velit
+              libero? Doloribus, a itaque.
+            </h5>
+            <br />
+            <h5>
+              <strong>Genre:-</strong> SciFi, Horror, Technology, romance,
+              encyclopedia
+            </h5>
+            <h5><strong>No. of pages:-</strong> 1800</h5>
+            <h5><strong>Publication:-</strong> Mcgrew hills</h5>
+            <h5><strong>Publication Year:-</strong> 1999</h5>
+          </div>
+          <hr />
+          <br />
+          <h4>
+            <span style="color: brown; margin-left: 3px">Cost:- 2846 Rs</span>
+          </h4>
+
+          <!-- Functional buttons -->
+          <div class="function_buttons">
+            <a href="#" class="btn btn-success">Purchase Now!</a>
+            <a href="#" class="btn btn-danger">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <br />
+    <footer>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Contact US?</h1>
+          <p class="lead">
+            Email Address: <br />pushkarkhadase@gmail.com<br /><br />
+            Phone Number: 7620698363
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

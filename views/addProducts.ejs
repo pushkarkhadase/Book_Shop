@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="addProducts.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+      <!-- brand Name -->
+      <a class="navbar-brand" href="../">Khadase's library</a>
+
+      <!-- Toggler Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#toggling_part"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="toggling_part">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/addProducts"><% if(editing_mode == false) { %> Add New Product <% } else { %> Edit Product <% } %></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!--Our library Section -->
+    <h2 class="Tranding_books">Lets Add the Details of Your Book!</h2>
+
+    <div class="alert alert-success alert-dismissible fade show">
+      <strong>The following details will be visible to all users!!!</strong>
+      <p>
+        Please add the valid name, Genere, Price, action(Rent / Sell), Date Of
+        Posting and valid image of the book!
+      </p>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>  
+    <!-- Available only when editing mode is on -->
+
+    <% if(editing_mode) { %> 
+    <div class="alert alert-success alert-dismissible fade show">
+      <strong>Please Edit the Below Form</strong>
+      <p>
+        We have already filled your details from our database to make your work simple Please edit the single or multiple entries that you are intrested to edit!
+      </p>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <% }  %>
+    <!-- Form -->
+
+    <!-- Extra entries to add 
+      #Auther entry 
+
+    -->
+    <hr />
+    <div id="book_info" style="margin-left: 30%; margin-right: 30%">
+      <form action= "<% if(editing_mode) { %> /editProduct <% } else { %> /addProducts <% } %>" method="POST" class="was-validated">
+        <!-- input for the name of the book -->
+        <div class="form-group">
+          <label for="bookName"> Book Name: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookName"
+            placeholder="Enter the name of Book"
+            name="bookName"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookName %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- input for image of the book -->
+        <div class="form-group">
+          <label for="bookImage"> Book Image: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookImage"
+            placeholder="Enter the Image URL of Book"
+            name="bookImage"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookImage %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- book Description -->
+        <div class="form-group">
+          <label for="bookDescription"> Book Description: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookDescription"
+            placeholder="Enter the Description of Book"
+            name="bookDescription"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookDescription %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- book Publication -->
+        <div class="form-group">
+          <label for="bookPublication"> Book Publication: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookPublication"
+            placeholder="Enter the Publication of Book"
+            name="bookPublication"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookPublication %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- book Publication Year -->
+        <div class="form-group">
+          <label for="bookPublicationYear"> Book Publication Year: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookPublicationYear"
+            placeholder="Enter the Publication Year of Book"
+            name="bookPublicationYear"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookPublicationYear %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- book Authors -->
+        <div class="form-group">
+          <label for="bookAuthors"> Book Authors: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookAuthors"
+            placeholder="Enter the Authors of Book"
+            name="bookAuthors"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookAuthors%> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">
+            Please Separate the author names with / (fordward slash)
+          </div>
+        </div>
+        <hr />
+
+        <!-- Book Genere -->
+        <div class="form-group">
+          <br />
+          <p>Please select the Genre of the Book From the Following Options.</p>
+          <label>
+            <input
+              type="checkbox"
+              name="genreHorror"
+              id="genreHorror"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreHorror) { %> checked <% } }%>
+            />
+            Horror</label
+          >
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="genreTechnology"
+              id="genreTechnology"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreTechnology) { %> checked <% } }%>
+            />
+            Technology</label
+          >
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="genreRomance"
+              id="genreRomance"
+              value="1"
+              <% if(editing_mode) {  if(productDetails.bookGenre.genreRomance) { %> checked <% } }%>
+            />
+            Romance</label
+          >
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="genreThriller"
+              id="genreThriller"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreThriller) { %> checked <% } }%>
+            />
+            Thriller</label
+          >
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="genreComedy"
+              id="genreComedy"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreComedy) { %> checked <% } }%>
+            />
+            Comedy</label
+          >
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="genreSciFi"
+              id="genreSciFi"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreSciFi) { %> checked <% } }%>
+            />
+            Sci-fi</label
+          >
+          <br />
+
+          <label
+            ><input
+              type="checkbox"
+              name="genreEncyclopedia"
+              id="genreEncyclopedia"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreEncyclopedia) { %> checked <% } }%>
+            />
+            Encyclopedia</label
+          >
+
+          <br />
+          <label
+            ><input
+              type="checkbox"
+              name="genreMotivation"
+              id="genreMotivation"
+              value="1"
+              <% if(editing_mode) { if(productDetails.bookGenre.genreMotivation) { %> checked <% } }%>
+            />
+            Motivation</label
+          >
+        </div>
+        <hr />
+
+        <!-- Number of Pages in book -->
+        <div class="form-inline input-group">
+          <label for="bookTotalPages">
+            Total number of Pages in the book:
+          </label>
+          <input
+            type="text"
+            class="form-control ml-2"
+            id="bookTotalPages"
+            placeholder="Enter the TotalPages of Book"
+            name="bookTotalPages"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookTotalPages %> <% } %>"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text input-group-sm"> Pages</span>
+          </div>
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- Cost -->
+        <div class="form-inline input-group">
+          <label for="bookCost"> Book Cost: </label>
+          <input
+            type="text"
+            class="form-control ml-2"
+            id="bookCost"
+            placeholder="Enter the Cost of Book"
+            name="bookCost"
+            required
+            value= "<% if(editing_mode) { %> <%= productDetails.bookCost %> <% } %>"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text input-group-sm"> Rupees</span>
+          </div>
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry</div>
+        </div>
+        <hr />
+
+        <!-- Note for the author review! -->
+        <div class="alert alert-success alert-dismissible fade show">
+          <strong>The Following entry is to help your customers</strong>
+          <p>
+            NOTE:- IF YOU DONT WANT TO PUT THE REVIEW PLEASE PUT (NA) IN THE
+            ENTRY. <br />
+            You can share your own tips or ways to read the book inorder to
+            provide better utilization of book!
+          </p>
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        <!-- An iinvisible entry in order to transmit the product into the post req -->
+        <% if(editing_mode) { %>
+
+          <% console.log("Printing the Product ID:-"); console.log(productDetails._id); %>
+          <input type="hidden" value="<%= productDetails._id %>" name="productId">
+
+        <% } %>
+
+        <% if(editing_mode) { %>
+
+         
+          <input type="hidden" value="<%= productDetails.bookDetails %>" name="productDate">
+
+        <% } %>
+
+        <!-- Author review -->
+        <div class="form-group">
+          <label for="bookReviews"> Book Author Review: </label>
+          <input
+            type="text"
+            class="form-control"
+            id="bookReviews"
+            placeholder="Enter the Review of Book"
+            name="bookReviews"
+            required
+            value="<% if(editing_mode) { %> <%= productDetails.bookReviews.authorReview %> <% } %>"
+          />
+          <div class="valid-feedback">Value Accepted</div>
+          <div class="invalid-feedback">Please fill this entry!</div>
+        </div>
+        <hr />
+
+        <button type="submit" class="btn btn-success mt-3 mb-5">
+          Submit details?
+        </button>
+      </form>
+    </div>
+    <footer>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Contact US?</h1>
+          <p class="lead">
+            Email Address: pushkarpremchandkhadase@gmail.com<br /><br />
+            Phone Number: 7620698363
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
